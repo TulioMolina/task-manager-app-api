@@ -37,7 +37,7 @@ app.use(express.json());
 // });
 
 // async await using try/catch block
-app.post("/user", async (req, res) => {
+app.post("/users", async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
@@ -48,7 +48,7 @@ app.post("/user", async (req, res) => {
   }
 });
 
-app.post("/task", async (req, res) => {
+app.post("/tasks", async (req, res) => {
   const task = new Task(req.body);
   try {
     await task.save();
@@ -67,7 +67,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/user/:id", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const user = await User.findById(id);
@@ -89,7 +89,7 @@ app.get("/tasks", async (req, res) => {
   }
 });
 
-app.get("/task/:id", async (req, res) => {
+app.get("/tasks/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const task = await Task.findById(id);
@@ -102,7 +102,7 @@ app.get("/task/:id", async (req, res) => {
   }
 });
 
-app.patch("/user/:id", async (req, res) => {
+app.patch("/users/:id", async (req, res) => {
   if (!validateFields(req, User)) {
     return res.status(400).send({ error: "Invalid update fields" });
   }
@@ -121,7 +121,7 @@ app.patch("/user/:id", async (req, res) => {
   }
 });
 
-app.patch("/task/:id", async (req, res) => {
+app.patch("/tasks/:id", async (req, res) => {
   if (!validateFields(req, Task)) {
     return res.status(400).send({ error: "Invalid update fields" });
   }
@@ -136,6 +136,30 @@ app.patch("/task/:id", async (req, res) => {
     res.send(task);
   } catch (e) {
     res.status(400).send();
+  }
+});
+
+app.delete("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).send();
+    }
+    res.send(user);
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
+app.delete("/tasks/:id", async (req, res) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) {
+      return res.status(404).send();
+    }
+    res.send(task);
+  } catch (e) {
+    res.status(500).send();
   }
 });
 
