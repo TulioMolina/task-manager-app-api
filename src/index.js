@@ -2,6 +2,7 @@ const express = require("express");
 require("./db/mongoose");
 const User = require("./models/user");
 const Task = require("./models/task");
+const validateFields = require("./utils/validateFields");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -98,6 +99,43 @@ app.get("/task/:id", async (req, res) => {
     res.send(task);
   } catch (e) {
     res.status(500).send();
+  }
+});
+
+app.patch("/user/:id", async (req, res) => {
+  if (!validateFields(req, User)) {
+    return res.status(400).send({ error: "Invalid update fields" });
+  }
+
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!user) {
+      return res.status(404).send();
+    }
+    res.send(user);
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+app.patch("/task/:id", async (req, res) => {
+  if (!validateFields(req, Task)) {
+    return res.status(400).send({ error: "Invalid update fields" });
+  }
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!task) {
+      return res.status(404).send();
+    }
+    res.send(task);
+  } catch (e) {
+    res.status(400).send();
   }
 });
 
