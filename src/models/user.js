@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -36,9 +37,15 @@ const userSchema = new mongoose.Schema({
       }
     },
   },
+  tokens: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 });
 
-// define static method on model to login users
+// define static method on model to login users, doesn't need to bind 'this'
 userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
 
@@ -55,7 +62,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
   return user;
 };
 
-// hash password when modified or created
+// middleware to hash password when modified or created, need to bind 'this'. document.save() have to explicitly be called to take effect
 userSchema.pre("save", async function (next) {
   const user = this;
 
@@ -65,6 +72,13 @@ userSchema.pre("save", async function (next) {
 
   next();
 });
+
+// define instance method for token generation, need to bind 'this'
+userSchema.methods.generateAuthToken = async function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id.toString() }, "secretvalue");
+  return token;
+};
 
 const User = mongoose.model("User", userSchema);
 
