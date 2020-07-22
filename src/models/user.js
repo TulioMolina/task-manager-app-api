@@ -39,11 +39,32 @@ const userSchema = new mongoose.Schema({
   },
   tokens: [
     {
-      type: String,
-      required: true,
+      token: {
+        type: String,
+        required: true,
+      },
     },
   ],
 });
+
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+  delete userObject.tokens;
+
+  return userObject;
+};
+
+// define instance method for token generation, need to bind 'this'
+userSchema.methods.generateAuthToken = async function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id.toString() }, "secretvalue");
+  user.tokens = user.tokens.concat({ token });
+  await user.save();
+  return token;
+};
 
 // define static method on model to login users, doesn't need to bind 'this'
 userSchema.statics.findByCredentials = async (email, password) => {
@@ -72,13 +93,6 @@ userSchema.pre("save", async function (next) {
 
   next();
 });
-
-// define instance method for token generation, need to bind 'this'
-userSchema.methods.generateAuthToken = async function () {
-  const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, "secretvalue");
-  return token;
-};
 
 const User = mongoose.model("User", userSchema);
 
