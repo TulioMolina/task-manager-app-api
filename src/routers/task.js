@@ -20,9 +20,28 @@ router.post("/tasks", auth, async (req, res) => {
 
 router.get("/tasks", auth, async (req, res) => {
   try {
-    // using the tasks virtual property of user document that references task documents from Task model
-    // could use Task.find({ owner: req.user._id}) instead
-    await req.user.populate("tasks").execPopulate();
+    const match = {};
+    if (req.query.completed) {
+      match.completed = req.query.completed === "true";
+    }
+    const sort = {};
+    if (req.query.sortBy) {
+      const sortByParams = req.query.sortBy.split(":");
+      const field = sortByParams[0];
+      const order = sortByParams[1] === "desc" ? -1 : 1;
+      sort[field] = order;
+    }
+    await req.user
+      .populate({
+        path: "tasks",
+        match,
+        options: {
+          limit: parseInt(req.query.limit),
+          skip: parseInt(req.query.skip),
+          sort,
+        },
+      })
+      .execPopulate();
     res.send(req.user.tasks);
   } catch (e) {
     res.status(500).send;
