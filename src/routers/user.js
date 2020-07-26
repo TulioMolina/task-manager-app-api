@@ -1,8 +1,9 @@
 const express = require("express");
+const multer = require("multer");
+const sharp = require("sharp");
 const User = require("../models/user");
 const validateFields = require("../utils/validateFields");
 const auth = require("../middlewares/auth");
-const multer = require("multer");
 
 const router = express.Router();
 
@@ -96,7 +97,10 @@ router.post(
   auth,
   upload.single("avatar"),
   async (req, res) => {
-    const buffer = req.file.buffer;
+    const buffer = await sharp(req.file.buffer)
+      .resize({ height: 250, width: 250 })
+      .png()
+      .toBuffer();
     req.user.avatar = buffer;
     await req.user.save();
     res.send();
@@ -118,7 +122,7 @@ router.get("/users/:id/avatar", async (req, res) => {
     if (!user || !user.avatar) {
       throw new Error();
     }
-    res.set("Content-Type", "image/jpg").send(user.avatar);
+    res.set("Content-Type", "image/png").send(user.avatar);
   } catch (e) {
     res.status(404).send();
   }
