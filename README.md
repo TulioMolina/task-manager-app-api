@@ -2,7 +2,7 @@
 
 A REST API for a task manager app implemented in Node.js/Express.js.
 
-The API consists of two resources: users and tasks. Each user can perform CRUD operations on their profile and tasks. [MongoDB](https://www.mongodb.com/) is used as database. Authentication system is implemented with [JWT](https://jwt.io/) tokens, using the [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) package. Endpoint testing is implemented with [Jest](https://jestjs.io/). The API and database were deployed to [Heroku](https://devcenter.heroku.com/) and [Atlas](https://www.mongodb.com/cloud/atlas), respectively.
+The API consists of two resources: users and tasks. Each user can perform CRUD operations on their profile and tasks. [MongoDB](https://www.mongodb.com/) is used as database. Authentication system is implemented with [JWT](https://jwt.io/) tokens. Endpoint testing is implemented with [Jest](https://jestjs.io/). The API and database were deployed to [Heroku](https://devcenter.heroku.com/) and [Atlas](https://www.mongodb.com/cloud/atlas), respectively.
 
 ## Technologies
 - [Express.js](https://expressjs.com/)
