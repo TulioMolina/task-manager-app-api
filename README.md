@@ -16,3 +16,5 @@ The API consists of two resources: users and tasks. Each user can perform CRUD o
 - Clone the repo: `git clone https://github.com/TulioMolina/task-manager-app-api.git`
 - Install dependencies: `npm install`
 - Run locally on port 3000: `npm run dev`
+
+Deployed API at this [link](https://tm-task-manager.herokuapp.com/)
