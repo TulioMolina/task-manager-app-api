@@ -8,7 +8,7 @@ The API consists of two resources: users and tasks. Each user can perform CRUD o
 - [Express.js](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/), [Mongoose](https://mongoosejs.com/)
 - [JWT](https://jwt.io/), [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [Jest](https://jestjs.io/)
+- [Jest](https://jestjs.io/), [SuperTest](https://www.npmjs.com/package/supertest)
 - [bcrypt.js](https://www.npmjs.com/package/bcryptjs)
 - [Sendgrid](https://www.npmjs.com/package/@sendgrid/mail), [@sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail) (email service) 
 - [Multer](https://www.npmjs.com/package/multer) (file upload)
