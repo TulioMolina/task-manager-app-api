@@ -17,4 +17,4 @@ The API consists of two resources: users and tasks. Each user can perform CRUD o
 - Install dependencies: `npm install`
 - Run locally on port 3000: `npm run dev`
 
-Deployed API at this [link](https://tm-task-manager.herokuapp.com/)
+Deployed API at this [link](https://tm-task-manager.herokuapp.com/).
