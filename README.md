@@ -10,7 +10,7 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 - [JWT](https://jwt.io/), [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [Jest](https://jestjs.io/), [SuperTest](https://www.npmjs.com/package/supertest)
 - [bcrypt.js](https://www.npmjs.com/package/bcryptjs)
-- [Sendgrid](https://www.npmjs.com/package/@sendgrid/mail), [@sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail) (email service) 
+- [Sendgrid](https://www.npmjs.com/package/@sendgrid/mail), [@sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail) (email notification service) 
 - [Multer](https://www.npmjs.com/package/multer) (file upload)
 - [Postman](https://www.postman.com/)
 
@@ -27,7 +27,10 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 Deployed API server at this [link](https://tm-task-manager.herokuapp.com).
 
 ## API reference
-As previously mentioned, the API consists of two type of resources: user and task. A task can only be created and operated by its associated user. The API supports methods to create, read, update and delete such resources. This reference explains how to use the API in order to perform such actions. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
+As previously mentioned, the API consists of two type of resources: user and task. A user is created with an email address and password combination. Once a user is created (or deleted), a salutation email is sent to the registered user email address. A task can only be created and operated by its associated user.
+The API supports methods to create, read, update and delete such resources.
+
+This reference explains how to use the API in order to perform such actions as well as the authentication mechanism to do so. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
 
 This guide is organized by resource type, as follows:
 
