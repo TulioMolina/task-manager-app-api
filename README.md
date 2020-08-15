@@ -2,7 +2,7 @@
 
 A REST API for task manager app, built with Node.js/Express.js.
 
-This API comprises two resources: user and task. Each user can perform CRUD operations on their profile and tasks. [MongoDB](https://www.mongodb.com/) is used as database. Authentication system is implemented with [JWT](https://jwt.io/) tokens. Endpoint testing is implemented with [Jest](https://jestjs.io/). The API and database were deployed to [Heroku](https://devcenter.heroku.com/) and [Atlas](https://www.mongodb.com/cloud/atlas), respectively.
+This API comprises two resources: user and task. Each user can perform CRUD operations on their profile and tasks. [MongoDB](https://www.mongodb.com/) is used as database. Authentication system is implemented with [JWT](https://jwt.io/) tokens. Endpoint testing is implemented with [Jest](https://jestjs.io/). [Postman](https://www.postman.com/) was used as development tool to easily make requests on the endpoints. The API and database were deployed to [Heroku](https://devcenter.heroku.com/) and [Atlas](https://www.mongodb.com/cloud/atlas), respectively.
 
 ## Technologies
 - [Express.js](https://expressjs.com/)
@@ -12,6 +12,7 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 - [bcrypt.js](https://www.npmjs.com/package/bcryptjs)
 - [Sendgrid](https://www.npmjs.com/package/@sendgrid/mail), [@sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail) (email service) 
 - [Multer](https://www.npmjs.com/package/multer) (file upload)
+- [Postman](https://www.postman.com/)
 
 ## Local setup
 - Clone the repo: `git clone https://github.com/TulioMolina/task-manager-app-api.git`
@@ -26,15 +27,12 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 Deployed API server at this [link](https://tm-task-manager.herokuapp.com).
 
 ## API reference
-As previously mentioned, the API consists of two type of resources: user and task. A task can only be created and operated by its associated user. The API supports methods to create, read, update and delete such resources. This reference explains how to use the API in order to perform such actions. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval endpoints) properly pointed out as **special cases** further on.
-
-### Authentication
-Authentication is handled with JWT tokens, which solely contain user identification data as payload, and are issued on the response to a **sign up** and/or **login** action request as the `token` property . Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is also a public endpoint.
+As previously mentioned, the API consists of two type of resources: user and task. A task can only be created and operated by its associated user. The API supports methods to create, read, update and delete such resources. This reference explains how to use the API in order to perform such actions. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
 
 This guide is organized by resource type, as follows:
 
-#### User resource
-The `user` object is modeled with the `name`, `email`, `password` and `age` properties.
+### User resource
+This resource is modeled as the `user` object with `name`, `email`, `password` and `age` properties.
 
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
@@ -49,8 +47,8 @@ The `user` object is modeled with the `name`, `email`, `password` and `age` prop
 | **delete avatar** | `DELETE /users/me` | - | - | Deletes user avatar.
 | **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image>` | Gets avatar, in `.png` format, of a user with specific `<id>`, public endpoint.
 
-#### Task resource
-The `task` object is modeled with the `description` and `completed` properties, and it is associated to its respective `user` owner.
+### Task resource
+This resource is modeled as the `task` object with `description` and `completed` properties, and it is automatically associated to its respective owner `user` object.
 
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
@@ -60,4 +58,7 @@ The `task` object is modeled with the `description` and `completed` properties, 
 | **update** | `PATCH /tasks/<id>` | `description`: *optional*, `completed`: *optional* | `task` | Updates a task of specific `<id>` for an authenticated user.
 | **delete** | `DELETE /tasks/<id>` | - | `task` | Deletes a task of specific `<id>` for an authenticated user.
 
-All URIs are relative to https://tm-task-manager.herokuapp.com (deployed server) or to the root domain of your local development environment.
+URIs are relative to https://tm-task-manager.herokuapp.com (deployed server) or to the root domain of your local development environment.
+
+### Authentication
+Authentication is handled with JWT tokens, which solely contain user identification data as payload, and are issued on the response to a **sign up** and/or **login** action request as the `token` property . Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is also a public endpoint.
