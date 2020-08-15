@@ -46,7 +46,7 @@ The `user` resource is modeled with the `name`, `email`, `password`, `age` prope
 | **delete** | `DELETE /users/me` | - | `user` | Deletes user and all their associated tasks.
 | **upload avatar** | `POST /users/me/avatar` | **Special case**: `Content-Type` header must have `form-data` value, and body must be of the form `avatar`: `<image>` key value pair, expected file formats are `.jpg`, `.jpeg` and `.png` | - | Uploads user avatar.
 | **delete avatar** | `DELETE /users/me` | - | - | Deletes user avatar.
-| **get avatar** | `GET /users/*:id*/avatar` | - | **Special case**: `<image>` in `.png` format | Gets avatar of a user with specific *id*, public endpoint.
+| **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image>` in `.png` format | Gets avatar of a user with specific `<id>`, public endpoint.
 
 #### Task resource
 The `task` resource is modeled with the `description` and `completed` properties, and it is associated to its respective `user` owner.
@@ -54,9 +54,9 @@ The `task` resource is modeled with the `description` and `completed` properties
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
 | **create** | `POST /tasks` | `description`: *required*, `completed`: *optional, default set to* `false` | `task` | Creates a task for an authenticated user.
-| **get** | `GET /tasks/*:id*` | - | `task` | Gets a task of specific *id* for an authenticated user.
+| **get** | `GET /tasks/<id>` | - | `task` | Gets a task of specific `<id>` for an authenticated user.
 | **get tasks** | `GET /tasks` | - | - | Gets tasks for an authenticated user. Optional query string parameters can be set to filter, limit, paginate and/or sort the resulting tasks: `completed=<true or false>`; `limit=<number>`; `skip=<number>`; `sortBy=createdAt:<desc or asc>`.    
-| **update** | `PATCH /tasks/*:id*` | `description`: *optional*, `completed`: *optional* | `task` | Updates a task of specific *id* for an authenticated user.
-| **delete** | `DELETE /tasks/*:id*` | - | `task` | Deletes a task of specific *id* for an authenticated user.
+| **update** | `PATCH /tasks/<id>` | `description`: *optional*, `completed`: *optional* | `task` | Updates a task of specific `<id>` for an authenticated user.
+| **delete** | `DELETE /tasks/<id>` | - | `task` | Deletes a task of specific `<id>` for an authenticated user.
 
 All URIs are relative to https://tm-task-manager.herokuapp.com (deployed server) or to the root domain of your local development environment.
