@@ -40,14 +40,14 @@ The `user` object is modeled with the `name`, `email`, `password` and `age` prop
 | :---                  |     :---                          |          :---                         | :---                      | :---
 | **sign up** | `POST /users` | `name`: *required*,`email`: *required*, `password`: *required*, `age`: *optional, default set to* `0` | `user`, `token` | Creates a new user, public endpoint.
 | **login** | `POST /users/login` | `email`: *required*, `password`: *required* | `user`, `token` | Logs in a user, public endpoint.
-| **logout** | `POST /users/logout` | - | - | Logs out a user.
+| **logout** | `POST /users/logout` | - | - | Logs out a user from current session.
 | **logout all** | `POST /users/logoutAll` | - | - | Logs out a user from all their sessions.
 | **get profile** | `GET /users/me` | - | `user` | Gets user profile.
 | **update profile** | `PATCH /users/me` | `name`: *optional*,`email`: *optional*, `password`: *optional*, `age`: *optional* | `user` | Updates user profile.
 | **delete** | `DELETE /users/me` | - | `user` | Deletes user and all their associated tasks.
-| **upload avatar** | `POST /users/me/avatar` | **Special case**: `Content-Type` header must be `form-data`, and body parameter must be of the form `avatar`: `<image>` key value pair, expected file formats are `.jpg`, `.jpeg` and `.png` | - | Uploads user avatar.
+| **upload avatar** | `POST /users/me/avatar` | **Special case**: `Content-Type` header must be `form-data`, and body parameter must be of the form `avatar`: `<image>` | - | Uploads user avatar, expected file formats are `.jpg`, `.jpeg` and `.png`.
 | **delete avatar** | `DELETE /users/me` | - | - | Deletes user avatar.
-| **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image>` in `.png` format | Gets avatar of a user with specific `<id>`, public endpoint.
+| **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image>` | Gets avatar, in `.png` format, of a user with specific `<id>`, public endpoint.
 
 #### Task resource
 The `task` object is modeled with the `description` and `completed` properties, and it is associated to its respective `user` owner.
