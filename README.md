@@ -26,14 +26,15 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 Deployed API server at this [link](https://tm-task-manager.herokuapp.com).
 
 ## API reference
-As previously mentioned, the API consists of two type of resources: user and task. A task can only be created and operated by its associated user. The API supports methods to create, read, update and delete such resources. This reference explains how to use the API in order to perform such actions. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON objects, with minor exceptions (image upload and retrieval endpoints) properly pointed out as **special cases** further on.
+As previously mentioned, the API consists of two type of resources: user and task. A task can only be created and operated by its associated user. The API supports methods to create, read, update and delete such resources. This reference explains how to use the API in order to perform such actions. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval endpoints) properly pointed out as **special cases** further on.
 
-Authentication is handled with JWT tokens, which solely contain the user id as payload, and are issued on the response body as the `token` property to a **sign up** or **login** action request. Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, as specified within its description below.
+### Authentication
+Authentication is handled with JWT tokens, which solely contain user identification data as payload, and are issued on the response to a **sign up** and/or **login** action request as the `token` property . Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is also a public endpoint.
 
 This guide is organized by resource type, as follows:
 
 #### User resource
-The `user` resource is modeled with the `name`, `email`, `password`, `age` properties.
+The `user` object is modeled with the `name`, `email`, `password` and `age` properties.
 
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
@@ -44,12 +45,12 @@ The `user` resource is modeled with the `name`, `email`, `password`, `age` prope
 | **get profile** | `GET /users/me` | - | `user` | Gets user profile.
 | **update profile** | `PATCH /users/me` | `name`: *optional*,`email`: *optional*, `password`: *optional*, `age`: *optional* | `user` | Updates user profile.
 | **delete** | `DELETE /users/me` | - | `user` | Deletes user and all their associated tasks.
-| **upload avatar** | `POST /users/me/avatar` | **Special case**: `Content-Type` header must have `form-data` value, and body must be of the form `avatar`: `<image>` key value pair, expected file formats are `.jpg`, `.jpeg` and `.png` | - | Uploads user avatar.
+| **upload avatar** | `POST /users/me/avatar` | **Special case**: `Content-Type` header must be `form-data`, and body parameter must be of the form `avatar`: `<image>` key value pair, expected file formats are `.jpg`, `.jpeg` and `.png` | - | Uploads user avatar.
 | **delete avatar** | `DELETE /users/me` | - | - | Deletes user avatar.
 | **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image>` in `.png` format | Gets avatar of a user with specific `<id>`, public endpoint.
 
 #### Task resource
-The `task` resource is modeled with the `description` and `completed` properties, and it is associated to its respective `user` owner.
+The `task` object is modeled with the `description` and `completed` properties, and it is associated to its respective `user` owner.
 
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
