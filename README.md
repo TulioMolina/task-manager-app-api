@@ -61,4 +61,4 @@ This resource is modeled as the `task` object with `description` and `completed`
 URIs are relative to https://tm-task-manager.herokuapp.com (deployed server) or to the root domain of your local development environment.
 
 ### Authentication
-Authentication is handled with JWT tokens, which solely contain user identification data as payload, and are issued on the response to a **sign up** and/or **login** action request as the `token` property . Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is also a public endpoint.
+Authentication is handled with JWT tokens, which solely contain `user` identification data as payload, and are issued on the response to a **sign up** and/or **login** action request as the `token` property . Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is also a public endpoint.
