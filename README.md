@@ -30,7 +30,7 @@ Deployed API server at this [link](https://tm-task-manager.herokuapp.com).
 As previously mentioned, the API consists of two type of resources: user and task. A user is created with an email address and password combination. Once a user is created (or deleted), a salutation email is sent to the registered user email address. A task can only be created and operated by its associated user.
 The API supports methods to create, read, update and delete such resources.
 
-This reference explains how to use the API in order to perform such actions as well as the authentication mechanism to do so. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
+This reference explains how to use the API in order to perform such actions, as well as the authentication mechanism to do so. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
 
 This guide is organized by resource type, as follows:
 
@@ -46,9 +46,9 @@ This resource is modeled as the `user` object with `name`, `email`, `password` a
 | **get profile** | `GET /users/me` | - | `user` | Gets user profile.
 | **update profile** | `PATCH /users/me` | `name`: *optional*,`email`: *optional*, `password`: *optional*, `age`: *optional* | `user` | Updates user profile.
 | **delete** | `DELETE /users/me` | - | `user` | Deletes user and all their associated tasks.
-| **upload avatar** | `POST /users/me/avatar` | **Special case**: `Content-Type` header must be `form-data`, and body parameter must be of the form `avatar`: `<image>` | - | Uploads user avatar, expected file formats are `.jpg`, `.jpeg` and `.png`.
+| **upload avatar** | `POST /users/me/avatar` | **Special case**: `Content-Type` header must be `form-data`, and body parameter must be of the form `avatar`: `<image file>` | - | Uploads user avatar, expected `<image file>` extensions are `.jpg`, `.jpeg` and `.png`.
 | **delete avatar** | `DELETE /users/me` | - | - | Deletes user avatar.
-| **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image>` | Gets avatar, in `.png` format, of a user with specific `<id>`, public endpoint.
+| **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image file>` | Gets avatar, in `.png` extension, of a user with specific `<id>`, public endpoint.
 
 ### Task resource
 This resource is modeled as the `task` object with `description` and `completed` properties, and it is automatically associated to its respective owner `user` object.
