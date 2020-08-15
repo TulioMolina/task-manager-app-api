@@ -36,10 +36,10 @@ This resource is modeled as the `user` object with `name`, `email`, `password` a
 
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
-| **sign up** | `POST /users` | `name`: *required*,`email`: *required*, `password`: *required*, `age`: *optional, default set to* `0` | `user`, `token` | Creates a new user, public endpoint.
-| **login** | `POST /users/login` | `email`: *required*, `password`: *required* | `user`, `token` | Logs in a user, public endpoint.
-| **logout** | `POST /users/logout` | - | - | Logs out a user from current session.
-| **logout all** | `POST /users/logoutAll` | - | - | Logs out a user from all their sessions.
+| **sign up** | `POST /users` | `name`: *required*,`email`: *required*, `password`: *required*, `age`: *optional, default set to* `0` | `user`, `token` | Creates a new user and issues user authentication token, public endpoint.
+| **login** | `POST /users/login` | `email`: *required*, `password`: *required* | `user`, `token` | Issues user authentication token, public endpoint.
+| **logout** | `POST /users/logout` | - | - | Invalidates user authentication token.
+| **logout all** | `POST /users/logoutAll` | - | - | Invalidates all the existing authentication tokens that belong to a user.
 | **get profile** | `GET /users/me` | - | `user` | Gets user profile.
 | **update profile** | `PATCH /users/me` | `name`: *optional*,`email`: *optional*, `password`: *optional*, `age`: *optional* | `user` | Updates user profile.
 | **delete** | `DELETE /users/me` | - | `user` | Deletes user and all their associated tasks.
@@ -61,4 +61,4 @@ This resource is modeled as the `task` object with `description` and `completed`
 URIs are relative to https://tm-task-manager.herokuapp.com (deployed server) or to the root domain of your local development environment.
 
 ### Authentication
-Authentication is handled with JWT tokens, which solely contain `user` identification data as payload, and are issued on the response to a **sign up** and/or **login** action request as the `token` property . Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is also a public endpoint.
+Authentication is handled with JWT tokens, which solely contain `user` identification data as payload, and are issued on the response body to a **sign up** and/or **login** action request as the `token` property . Therefore, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is also a public endpoint.
