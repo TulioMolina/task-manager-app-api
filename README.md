@@ -32,7 +32,10 @@ The API supports methods to create, read, update and delete such resources.
 
 This reference explains how to use the API in order to perform such actions, as well as the authentication mechanism to do so. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
 
-This guide is organized by resource type, as follows:
+This guide is organized with the following sections:
+  - [User resource](#user-resource)
+  - [Task resource](#task-resource)
+  - [Authentication](#authentication)
 
 ### User resource
 This resource is modeled as the `user` object with `name`, `email`, `password` and `age` properties.
