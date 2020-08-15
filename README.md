@@ -1,8 +1,8 @@
 # task-manager-app-api
 
-A REST API for task manager app, built with Node.js/Express.js.
+A REST API for task manager apps, built with Node.js/Express.js.
 
-This API comprises two resources: user and task. Each user can perform CRUD operations on their profile and tasks. [MongoDB](https://www.mongodb.com/) is used as database. Authentication system is token-based with [JWT](https://jwt.io/). Endpoint testing is implemented with [Jest](https://jestjs.io/). [Postman](https://www.postman.com/) was used as development tool to easily make requests on the endpoints. The API and database were deployed to [Heroku](https://devcenter.heroku.com/) and [Atlas](https://www.mongodb.com/cloud/atlas), respectively.
+This API comprises two resources: user and task. Each user can perform CRUD operations on their profile and tasks. [MongoDB](https://www.mongodb.com/) is used as database. The authentication system is token-based with [JWT](https://jwt.io/). Endpoint testing is implemented with [Jest](https://jestjs.io/). [Postman](https://www.postman.com/) was used as a development tool to easily make requests on the endpoints. The API and database were deployed to [Heroku](https://devcenter.heroku.com/) and [Atlas](https://www.mongodb.com/cloud/atlas), respectively.
 
 ## Technologies
 - [Express.js](https://expressjs.com/)
@@ -27,10 +27,10 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 Deployed API server at this [link](https://tm-task-manager.herokuapp.com).
 
 ## API reference
-As previously mentioned, the API consists of two type of resources: user and task. A user is created with an email address and password combination. Once a user is created (or deleted), a salutation email is sent to the registered user email address. A task can only be created and operated by its associated user.
-The API supports methods to create, read, update and delete such resources.
+As previously mentioned, the API consists of two types of resources: user and task. A user is created with an email address and password combination. Once a user is created (or deleted), a salutation email is sent to the registered user email address. A task can only be created and operated by its associated user.
+The API supports methods to create, read, update, and delete such resources.
 
-This reference explains how to use the API in order to perform such actions, as well as the authentication mechanism to do so. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
+This reference explains how to use the API to perform such actions, as well as the authentication mechanism to do so. The API was designed following REST conventions; thus, resources are represented as JSON objects. In the same way, responses and requests body are also JSON data, with minor exceptions (image upload and retrieval) properly explained further on.
 
 This guide is organized with the following sections:
   - [User resource](#user-resource)
@@ -38,7 +38,7 @@ This guide is organized with the following sections:
   - [Authentication](#authentication)
 
 ### User resource
-This resource is modeled as the `user` object with `name`, `email`, `password` and `age` properties.
+This resource is modeled as the `user` object with `name`, `email`, `password`, and `age` properties.
 
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
@@ -54,7 +54,7 @@ This resource is modeled as the `user` object with `name`, `email`, `password` a
 | **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image file>` | Gets avatar, in `.png` extension, of a user with specific `<id>`, public endpoint.
 
 ### Task resource
-This resource is modeled as the `task` object with `description` and `completed` properties, and it is automatically associated to its respective owner `user` object.
+This resource is modeled as the `task` object with `description` and `completed` properties, and it is automatically associated with its respective owner `user` object.
 
 | Action                | HTTP request/Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
@@ -67,4 +67,4 @@ This resource is modeled as the `task` object with `description` and `completed`
 URIs are relative to https://tm-task-manager.herokuapp.com (deployed server) or to the root domain of your local development environment.
 
 ### Authentication
-This API employs a token-based authentication mechanism with JWT. These tokens solely contain `user` identification data as payload, and are issued on the response body to a **sign up** and/or **login** action request as the `token` property . Therefore, in order to authenticate, the client must include the following header for any other type of request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is a public endpoint.
+This API employs a token-based authentication mechanism with JWT. These tokens solely contain `user` identification data as payload and are issued on the response body to a **sign up** and/or **login** action request as the `token` property. Therefore, in order to authenticate, the client must include the following header for any other action request: `Authorization: Bearer <token>`, with exception of the **get avatar** action, which is a public endpoint.
