@@ -44,8 +44,8 @@ This resource is modeled as the `user` object with `name`, `email`, `password`, 
 | :---                  |     :---                          |          :---                         | :---                      | :---
 | **sign up** | `POST /users` | `name`: *required*,`email`: *required*, `password`: *required*, `age`: *optional, default set to* `0` | `user`, `token` | Creates a new `user` and issues authentication `token`, public endpoint.
 | **login** | `POST /users/login` | `email`: *required*, `password`: *required* | `user`, `token` | Issues authentication `token`, public endpoint.
-| **logout** | `POST /users/logout` | - | - | Invalidates authentication token.
-| **logout all** | `POST /users/logoutAll` | - | - | Invalidates all the existing authentication tokens that belong to a `user`.
+| **logout** | `POST /users/logout` | - | - | Invalidates authentication `token`.
+| **logout all** | `POST /users/logoutAll` | - | - | Invalidates the existing authentication `token`(s) that belong to a `user`.
 | **get profile** | `GET /users/me` | - | `user` | Gets `user`.
 | **update profile** | `PATCH /users/me` | `name`: *optional*,`email`: *optional*, `password`: *optional*, `age`: *optional* | `user` | Updates `user`.
 | **delete** | `DELETE /users/me` | - | `user` | Deletes `user` and its associated `task`(s).
