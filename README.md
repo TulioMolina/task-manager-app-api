@@ -38,7 +38,7 @@ This guide is organized with the following sections:
   - [Authentication](#authentication)
 
 ### User resource
-This resource is represented through the `user` model with `name`, `email`, `password`, and `age` properties.
+This resource is modeled as the `user` object with `name`, `email`, `password`, and `age` properties.
 
 | Action                | Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
@@ -54,7 +54,7 @@ This resource is represented through the `user` model with `name`, `email`, `pas
 | **get avatar** | `GET /users/<id>/avatar` | - | **Special case**: `<image file>` | Gets avatar, in `.png` extension, of a `user` with specific `<id>`, public endpoint.
 
 ### Task resource
-This resource is represented through the `task` model with `description` and `completed` properties, and it is automatically associated with its respective `user` when created.
+This resource is modeled as the `task` object with `description` and `completed` properties, and it is automatically associated with its respective `user`, when created.
 
 | Action                | Endpoint             | Request Body Properties               | Response Body Properties  | Description
 | :---                  |     :---                          |          :---                         | :---                      | :---
