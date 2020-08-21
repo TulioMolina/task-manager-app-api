@@ -64,7 +64,7 @@ This resource is modeled as the `task` object with `description` and `completed`
 | **update** | `PATCH /tasks/<id>` | `description`: *optional*, `completed`: *optional* | `task` | Updates a `task` of specific `<id>`.
 | **delete** | `DELETE /tasks/<id>` | - | `task` | Deletes a `task` of specific `<id>`.
 
-URIs are relative to https://tm-task-manager.herokuapp.com (deployed API server) or to the domain of your local development environment.
+URIs are relative to https://tm-task-manager.herokuapp.com (deployed API server) or to your local development server domain.
 
 ### Authentication
 This API employs a token-based authentication mechanism with JWT. These tokens solely contain `user` identification data as payload and are issued on the response body to a **sign up** and/or **login** action request as the `token` property. Therefore, to authenticate, the `Authorization: Bearer <token>` header must be included for any other action request, with exception of the **get avatar** action, which is a public endpoint.
