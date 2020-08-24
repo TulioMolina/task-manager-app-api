@@ -10,7 +10,7 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 - [JWT](https://jwt.io/), [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [Jest](https://jestjs.io/), [SuperTest](https://www.npmjs.com/package/supertest)
 - [bcrypt.js](https://www.npmjs.com/package/bcryptjs)
-- [Sendgrid](https://www.npmjs.com/package/@sendgrid/mail), [@sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail) (email notification service) 
+- [Sendgrid](https://sendgrid.com/), [@sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail) (email notification service) 
 - [Multer](https://www.npmjs.com/package/multer) (file upload)
 - [Postman](https://www.postman.com/)
 
