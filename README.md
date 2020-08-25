@@ -1,6 +1,6 @@
 # task-manager-app-api
 
-A REST API for task manager apps, built with Node.js/Express.js.
+A REST API for task manager apps, built with Express.js.
 
 This API comprises two resources: user and task. Each user can perform CRUD operations on their profile and tasks. [MongoDB](https://www.mongodb.com/) is used as database. The authentication system is token-based with [JWT](https://jwt.io/). Endpoint testing is implemented with [Jest](https://jestjs.io/). [Postman](https://www.postman.com/) was used as a development tool to easily make requests on the endpoints. The API and database were deployed to [Heroku](https://devcenter.heroku.com/) and [Atlas](https://www.mongodb.com/cloud/atlas), respectively. Please refer to the [API reference](#api-reference) section below for usage details.
 
