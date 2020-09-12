@@ -1,4 +1,4 @@
-# task-manager-app-api
+# task-management-api
 
 A task management REST API, built with Express.js.
 
@@ -15,7 +15,7 @@ This API comprises two resources: user and task. Each user can perform CRUD oper
 - [Postman](https://www.postman.com/)
 
 ## Local setup
-- Clone the repo: `git clone https://github.com/TulioMolina/task-manager-app-api.git`
+- Clone the repo: `git clone https://github.com/TulioMolina/task-management-api.git`
 - Install dependencies: `npm install`
 - Appropriately configure your development environment by creating and populating the `/config/dev.env` file with the following environment variables:
   - `PORT`
